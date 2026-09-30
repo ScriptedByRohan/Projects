@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Digital Clock</title>
+  </head>
+
+  <body>
+    <main class="clock-container">
+      <div id="clock">08:10:45 PM</div>
+    </main>
+
+    <script>
+      function showTime() {
+        const time = new Date();
+
+        let hour = time.getHours();
+        const min = time.getMinutes();
+        const sec = time.getSeconds();
+
+        const am_pm = hour >= 12 ? "PM" : "AM";
+
+        // Convert to 12-hour format
+        hour = hour % 12;
+        hour = hour === 0 ? 12 : hour;
+
+        const currentTime =
+          String(hour).padStart(2, "0") +
+          ":" +
+          String(min).padStart(2, "0") +
+          ":" +
+          String(sec).padStart(2, "0") +
+          " " +
+          am_pm;
+
+        document.getElementById("clock").textContent = currentTime;
+      }
+
+      showTime();
+      setInterval(showTime, 1000);
+    </script>
+  </body>
+</html>
